@@ -1,1 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    display:flex;
+    background: #000;
+    justify-content: center;
+    align-items: center;
+}
+body .circle {
+    position: relative;
+    left: 250px;
+    top: 250px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background: linear-gradient(#0f0,#f0f);
+    z-index: 1;
+}
+body a{
+    position: relative;
+    top: 350px;
+    font-size: 50px;
+    text-decoration: none;
+    background: #aaa;
+    border-radius: 5px;
+    color: #ddd;
+    z-index: 2;
 
+}
+body a:hover{
+    background: linear-gradient(#a2f1f6,#8ee16a);
+    color: #000;
+}
