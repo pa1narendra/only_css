@@ -17,7 +17,6 @@ body .circle {
     height: 100px;
     border-radius: 50px;
     background: linear-gradient(#0f0,#f0f);
-    z-index: 1;
 }
 body a{
     position: relative;
@@ -27,7 +26,6 @@ body a{
     background: #aaa;
     border-radius: 5px;
     color: #ddd;
-    z-index: 2;
 
 }
 body a:hover{

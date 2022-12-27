@@ -72,7 +72,7 @@ section .signin .content{
 }
 section .signin .content h2{
     font-size: 2em;
-    color: #f00;
+    color: #0f0;
     text-transform: uppercase;
 }
 section .signin .content .form{
