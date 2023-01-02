@@ -8,7 +8,33 @@
     <title>GAME!</title>
 </head>
 <body>
+    <div class="cursor">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
     <div class="circle"></div>
     <a href="login.html">click me to see magic</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        document.body.addEventListener("mousemove",e => {
+            gsap.to(".circle" , {
+                x : e.clientX,
+                y : e.clientY,
+                stagger : -0.05,
+            })
+        })
+    </script>
 </body>
 </html>

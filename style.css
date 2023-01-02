@@ -4,31 +4,36 @@
     box-sizing: border-box;
 }
 body{
-    display:flex;
     background: #000;
-    justify-content: center;
-    align-items: center;
+    overflow:hidden;
+    height: 100vh;
+    width: 100%;
 }
-body .circle {
-    position: relative;
-    left: 250px;
-    top: 250px;
+.cursor{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+
+}
+ .cursor .circle {
+    position: absolute;
+    top: -10px;
+    left: -10px;
     width: 100px;
     height: 100px;
     border-radius: 50px;
     background: linear-gradient(#0f0,#f0f);
 }
-body a{
-    position: relative;
-    top: 350px;
-    font-size: 50px;
+body .cursor a{
+    position: absolute;
     text-decoration: none;
-    background: #aaa;
-    border-radius: 5px;
-    color: #ddd;
+    font-size: 45px;
+    top: 286px;
+    left: 612px;
+    width: 400px;
 
 }
-body a:hover{
+body .cursor a:hover{
     background: linear-gradient(#a2f1f6,#8ee16a);
     color: #000;
 }
