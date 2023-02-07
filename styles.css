@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #151515;
+}
+.card{
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    border-radius: 20px;
+}
+.card:hover{
+    width: 600px;
+}
+.card .circle{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.card .circle::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    background:#151515;
+    border-radius: 50%;
+    border: 8px solid var(--clr);
+    filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+    transition: 0.2s;
+}
+.card:hover .circle::before{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: var(--clr);
+}
+.card .circle .logo{
+    position: relative;
+    transition: 0.2s;
+    width: 250px;
+}
+.card:hover .circle .logo{
+    transform: scale(0);
+    transition-delay: 0s;
+}
+.card .coca{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(0) rotate(315deg);
+    height: 300px;
+    transition: 0.3s ease-in-out;
+}
+.card:hover .coca{
+    top: 25%;
+    left: 72%;
+    height: 500px;
+    transform: translate(-50%,-50%) scale(1) rotate(15deg);
+}
+.card .content{
+    position: absolute;
+    width: 50%;
+    left: 20%;
+    padding: 20px 20px 20px 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+}
+.card:hover .content{
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+}
+.card .content h2{
+    color: #fff;
+    font-size: 2.5em;
+    text-transform: uppercase;
+}
+.card .content p{
+    color: #fff;
+    font: 1em sans-serif;
+    font-weight: 200;
+
+}
+.card .content a{
+    color: #cfd;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    background: #3df21e;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
