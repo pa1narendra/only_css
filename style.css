@@ -24,17 +24,16 @@ body{
     border-radius: 50px;
     background: linear-gradient(#0f0,#f00);
 }
-body .cursor a{
-    color: #fff;
-    position: absolute;
-    text-decoration: none;
+.links a{
+    color: #efefa5;
     font-size: 2em;
-    top: 286px;
-    left: 612px;
-    width: 400px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
-body .cursor a:hover{
+.links a:hover{
     font:sans-serif;
     font-weight:bold;
     color: #abcdef;
