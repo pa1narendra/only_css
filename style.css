@@ -22,18 +22,21 @@ body{
     width: 100px;
     height: 100px;
     border-radius: 50px;
-    background: linear-gradient(#0f0,#f0f);
+    background: linear-gradient(#0f0,#f00);
 }
 body .cursor a{
+    color: #fff;
     position: absolute;
     text-decoration: none;
-    font-size: 45px;
+    font-size: 2em;
     top: 286px;
     left: 612px;
     width: 400px;
 
 }
 body .cursor a:hover{
-    background: linear-gradient(#a2f1f6,#8ee16a);
-    color: #000;
+    font:sans-serif;
+    font-weight:bold;
+    color: #abcdef;
+    
 }
