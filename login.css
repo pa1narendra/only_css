@@ -126,7 +126,7 @@ section .signin .content .form .links{
 .signin .content .form .links a:nth-child(2)
 {
     color: #0f0;
-    font-weight: 600;
+    font-weight: 500;
 }
 .signin .content .form .inputBx input[type="submit"]
 {
