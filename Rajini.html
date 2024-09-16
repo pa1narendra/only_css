@@ -1,1 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED Board</title>
+  <style>
+    .led-board {
+      border: 1px solid gray;
+      background: linear-gradient(to bottom left, rgba(18, 18, 18, 0.8), #1a1a1a 30%, #121212 75%);
+      padding: 16px;
+      border-radius: 12px;
+      position: relative;
+    }
+    .led-board svg {
+      width: 100%;
+      height: auto;
+    }
+    .led-board circle {
+      fill: #1a1a1a;
+      transition: all 200ms ease-in-out;
+    }
+    .led-board:hover circle.lit {
+      fill: #a855f7;
+    }
+    @keyframes led {
+      0%, 100% { fill: #1a1a1a; }
+      50% { fill: #a855f7; }
+    }
+    .led-board circle.animate-led {
+      animation: led 2000ms ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="led-board" id="ledBoard"></div>
 
+  <script>
+    const charMap = {
+      P: [
+        [1, 1, 1, 1],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [1, 1, 1, 0],
+        [1, 0, 0, 0],
+        [1, 0, 0, 0],
+      ],
+      A: [
+        [0, 1, 1, 1, 0],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+      ],
+      V: [
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [0, 1, 0, 1, 0],
+        [0, 0, 1, 0, 0],
+      ],
+      N: [
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 1, 0, 0, 1],
+        [1, 0, 1, 0, 1],
+        [1, 0, 0, 1, 1],
+        [1, 0, 0, 0, 1],
+      ],
+      R: [
+        [1, 1, 1, 0],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [1, 1, 1, 0],
+        [1, 0, 1, 0],
+        [1, 0, 0, 1],
+      ],
+      E: [
+        [1, 1, 1, 1],
+        [1, 0, 0, 0],
+        [1, 1, 1, 1],
+        [1, 0, 0, 0],
+        [1, 0, 0, 0],
+        [1, 1, 1, 1],
+      ],
+      D: [
+        [1, 1, 1, 0],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [1, 1, 1, 0],
+      ],
+      " ": [
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+        [0, 0],
+      ],
+      0: [
+        [0, 1, 1, 1, 0],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [0, 1, 1, 1, 0],
+      ],
+      1: [
+        [0, 0, 1],
+        [0, 1, 1],
+        [1, 0, 1],
+        [0, 0, 1],
+        [0, 0, 1],
+        [0, 0, 1],
+      ],
+      3: [
+        [1, 1, 1, 1, 0],
+        [0, 0, 0, 0, 1],
+        [0, 0, 1, 1, 0],
+        [0, 0, 1, 1, 0],
+        [0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 0],
+      ],
+      2: [
+        [0, 1, 1, 1, 0],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 1, 0],
+        [0, 0, 1, 0, 0],
+        [0, 1, 0, 0, 0],
+        [1, 1, 1, 1, 1],
+      ],
+      4: [
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [0, 1, 1, 1, 1],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1],
+      ],
+      5: [
+        [1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0],
+        [1, 1, 1, 1, 0],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 0],
+      ],
+      6: [
+        [0, 1, 1, 1, 0],
+        [1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0],
+        [1, 1, 1, 1, 0],
+        [1, 0, 0, 0, 1],
+        [0, 1, 1, 1, 0],
+      ],
+      7: [
+        [1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 1, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+      ],
+      8: [
+        [0, 1, 1, 1, 0],
+        [1, 0, 0, 0, 1],
+        [0, 1, 1, 1, 0],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [0, 1, 1, 1, 0],
+      ],
+      9: [
+        [0, 1, 1, 1, 0],
+        [1, 0, 0, 0, 1],
+        [1, 0, 0, 0, 1],
+        [0, 1, 1, 1, 1],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1],
+      ],
+    };
+
+    function createMatrix(rows, cols) {
+      return Array(rows)
+        .fill("")
+        .map(() => Array(cols).fill(false));
+    }
+
+    function createBoard(word) {
+      const rows = 15;
+      const wordArray = word.trim().toUpperCase().split("");
+      const cols =
+        wordArray
+          .map((char) => (charMap[char] || charMap[" "])[0].length + 1)
+          .reduce((a, b) => a + b, 1) * 2;
+
+      const matrix = createMatrix(rows, cols);
+      const startRow = 2;
+      let startCol = 2;
+
+      for (const charIndex in wordArray) {
+        const char = wordArray[charIndex];
+        const charPattern = charMap[char] || charMap[" "];
+
+        for (const rowIndex in charPattern) {
+          const row = charPattern[rowIndex];
+          for (const colIndex in row) {
+            const isLit = row[colIndex];
+            if (isLit) {
+              matrix[startRow + +rowIndex * 2][startCol + +colIndex * 2] = true;
+            }
+          }
+        }
+
+        startCol += (charPattern[0].length + 1) * 2;
+      }
+
+      return {
+        rows,
+        cols,
+        matrix,
+      };
+    }
+
+    function renderBoard(word) {
+      const { rows, cols, matrix } = createBoard(word);
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", `0 0 ${cols - 1} ${rows}`);
+      svg.classList.add("h-auto", "w-full", "text-zinc-800");
+
+      matrix.forEach((row, rowIndex) => {
+        row.forEach((isLit, colIndex) => {
+          if (rowIndex % 2 === 1 || colIndex % 2 === 1) return;
+
+          const shouldAnimate = !isHovering && isLit && Math.random() > 0.8;
+          let delay = 0;
+          if (shouldAnimate) {
+            delay = Math.floor(Math.random() * 1000);
+          }
+
+          const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          circle.setAttribute("cx", colIndex + 0.25);
+          circle.setAttribute("cy", rowIndex + 0.25);
+          circle.setAttribute("r", 0.25);
+          circle.style.transitionDelay = !isHovering ? `${colIndex * 15}ms` : "0ms";
+          circle.style.animationDuration = "2000ms";
+          circle.style.animationDelay = `${delay}ms`;
+          circle.classList.add("fill-zinc-800", "transition-all", "duration-200", "ease-in-out");
+          if (isLit) circle.classList.add("lit");
+          if (shouldAnimate) circle.classList.add("animate-led", "ease-in-out");
+
+          svg.appendChild(circle);
+        });
+      });
+
+      const ledBoard = document.getElementById("ledBoard");
+      ledBoard.innerHTML = "";
+      ledBoard.appendChild(svg);
+    }
+
+    let isHovering = false;
+
+    document.getElementById("ledBoard").addEventListener("mouseenter", () => {
+      isHovering = true;
+    });
+
+    document.getElementById("ledBoard").addEventListener("mouseleave", () => {
+      isHovering = false;
+    });
+
+    setInterval(() => {
+      if (!isHovering) {
+        renderBoard("PAVAN NARENDRA");
+      }
+    }, 3000);
+
+    renderBoard("PAVAN NARENDRA");
+  </script>
+</body>
+</html>
