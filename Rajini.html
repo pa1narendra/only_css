@@ -1,49 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LED Board</title>
-    <style>
-      .led-board {
-        border: 1px solid gray;
-        background: linear-gradient(
-          to bottom left,
-          rgba(18, 18, 18, 0.8),
-          #1a1a1a 30%,
-          #121212 75%
-        );
-        padding: 16px;
-        border-radius: 12px;
-        position: relative;
-      }
-      .led-board svg {
-        width: 100%;
-        height: auto;
-      }
-      .led-board circle {
-        fill: #1a1a1a;
-        transition: all 200ms ease-in-out;
-      }
-      .led-board:hover circle {
-        fill: #ff0000;
-      }
-      @keyframes led {
-        0%,
-        100% {
-          fill: #1a1a1a;
-        }
-        50% {
-          fill: #0f0;
-        }
-      }
-      .led-board circle.animate-led {
-        animation: led 2000ms ease-in-out;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="led-board" id="ledBoard"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED Board</title>
+  <style>
+    .led-board {
+      border: 1px solid gray;
+      background: linear-gradient(to bottom left, rgba(18, 18, 18, 0.8), #1a1a1a 30%, #121212 75%);
+      padding: 16px;
+      border-radius: 12px;
+      position: relative;
+    }
+    .led-board svg {
+      width: 100%;
+      height: auto;
+    }
+    .led-board circle {
+      fill: #1a1a1a;
+      transition: all 200ms ease-in-out;
+    }
+    .led-board:hover circle.lit {
+      fill: #a855f7;
+    }
+    @keyframes led {
+      0%, 100% { fill: #1a1a1a; }
+      50% { fill: #a855f7; }
+    }
+    .led-board circle.animate-led {
+      animation: led 2000ms ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="led-board" id="ledBoard"></div>
 
     <script>
       const charMap = {
