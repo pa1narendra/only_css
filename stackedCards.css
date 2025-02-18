@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+body {
+    width: 100%;
+    
+}
+.stack-area {
+    background-color: #fff;
+    width: 100%;
+    height: 300vh;
+    display: flex;
+}
+button{
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+a{
+    color: #fff;
+    font-size: 20px;
+}
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-style: bold;
+    font-size: 80px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 20px;
+    flex-basis: 50%;
+    gap: 20px;
+    top: 0;
+    position: sticky;
+}
+
+.right {
+    flex-basis: 50%;
+    height: 100vh;
+    top: 0;
+    position: sticky;
+}
+.card{
+    width: 350px;
+    height: 350px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    position: absolute;
+    top:calc(50% - 175px);
+    left: calc(50% - 175px);
+}
+.card:nth-child(1) {
+    background: #ad3428;
+}
+.card:nth-child(2) {
+    background: #492bcf;
+}
+.card:nth-child(3) {
+    background: #28ad49;
+}
+.card:nth-child(4) {
+    background: #ad8728;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+}
+h2{
+    font-size: 40px;
+}
+p{
+    font-size: 20px;
+}
+.card{
+    transition: 0.5s ease-in-out;
+}
+.away{
+    transform-origin: bottom left;
+}

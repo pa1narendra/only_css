@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stackedCards.css">
+    <title>Stacked Cards</title>
+</head>
+<body>
+    <div class="stack-area">
+        <div class="left">
+            <h1>Namaste</h1>
+            <p>Here are some of my projects for more info click the link below</p>
+
+            <button><a href="#">My Projects</a></button>
+        </div>
+        <div class="right">
+            <div class="card">
+                <h2>Project 1</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+            </div>
+            <div class="card">
+                <h2>Project 2</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+            </div>
+            <div class="card">
+                <h2>Project 3</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+            </div>
+            <div class="card">
+                <h2>Project 4</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let cards = document.querySelectorAll(".card");
+        let stackArea = document.querySelector(".stack-area");
+
+function rotateCards(){
+    let angle = 0;
+    cards.forEach((card, index) => {
+        if(card.classList.contains("away")){
+            card.style.transform = `translateY(-120vh) rotate(-48deg)`;
+        }
+        else{
+            card.style.transform = `rotate(${angle}deg)`;
+            angle -= 10;
+            card.style.zIndex = cards.length - index;
+        }
+    });
+}
+rotateCards();
+
+window.addEventListener("scroll", () => {
+    let distance = window.innerHeight/2;
+    let topVal = stackArea.getBoundingClientRect().top;
+    let index = -1 * (topVal/distance + 1);
+    index = Math.floor(index);
+    for(let i=0;i<cards.length;i++){
+        if(i<=index){
+            cards[i].classList.add("away");
+        }
+        else{
+            cards[i].classList.remove("away");
+        }
+    }
+    rotateCards();
+
+})
+    </script>
+</body>
+
+</html>
